@@ -1,0 +1,23 @@
+{% extends 'django_shop/base.html' %}
+{% load mptt_tags %}
+
+{% block title %}Все категории{% endblock %}
+
+{% block base_content %}
+
+
+
+	{% for cat in category_list %}
+		{% drilldown_tree_for_node cat as drilldown %}
+	
+		{% for node,structure in drilldown|tree_info %}
+	    {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
+	        <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+	    {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+	{% endfor %}
+		
+		
+	{% endfor %}
+
+
+{% endblock %}

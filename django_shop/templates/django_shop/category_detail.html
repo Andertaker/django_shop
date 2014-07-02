@@ -1,0 +1,19 @@
+{% extends 'django_shop/base.html' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block base_content %}
+
+	{{ category.name }}
+	
+	<br><br><br>
+	
+	
+	Товары:<br><br>
+	
+	{% for i in category.get_products_list %}
+		{{ i.name }}<br>
+	
+	{% endfor %}
+{% endblock %}
+
